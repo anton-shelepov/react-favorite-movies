@@ -1,0 +1,17 @@
+@import "../_utils/scss/functions.scss";
+
+.container {
+    background-color: black;
+
+    .content_wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 1200px;
+        height: rem(100);
+        width: 100%;
+        margin: 0 auto;
+        color: white;
+        justify-content: space-between;
+    }
+}

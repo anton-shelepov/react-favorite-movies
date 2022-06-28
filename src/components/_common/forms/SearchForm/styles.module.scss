@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+
+    .search_input {
+        width: 100%;
+        height: rem(35);
+        border: 0;
+        outline: none;
+    }
+
+    .submit_btn {
+        border: 0;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+    }
+}
