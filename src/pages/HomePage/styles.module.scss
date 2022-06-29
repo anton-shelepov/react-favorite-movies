@@ -1,0 +1,11 @@
+@import "../../components/_utils/scss/functions.scss";
+
+.container {
+    .section {
+        .section_title {
+            margin: rem(25) 0 rem(15) 0;
+            padding-bottom: rem(5);
+            border-bottom: 4px black solid;
+        }
+    }
+}

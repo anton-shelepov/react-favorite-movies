@@ -2,6 +2,11 @@
 
 .container {
     background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 999;
 
     .content_wrapper {
         display: flex;
@@ -13,5 +18,10 @@
         margin: 0 auto;
         color: white;
         justify-content: space-between;
+
+        .block_middle {
+            width: 100%;
+            margin: 0 rem(50);
+        }
     }
 }

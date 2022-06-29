@@ -1,9 +1,9 @@
-import path from "path";
+import path from 'path'
 
 module.exports = {
     resolve: {
         alias: {
-            Root: path.resolve(__dirname, 'src/')
-        }
-    }
-};
+            Root: path.resolve(__dirname, 'src/'),
+        },
+    },
+}

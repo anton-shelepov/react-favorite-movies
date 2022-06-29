@@ -7,8 +7,13 @@ const Header: React.FC = () => {
     return (
         <header className={s.container}>
             <div className={s.content_wrapper}>
-                <Logo />
-                <SearchForm />
+                <div className={s.block_left}>
+                    <Logo />
+                </div>
+                <div className={s.block_middle}>
+                    <SearchForm />
+                </div>
+                <div className={s.block_right}></div>
             </div>
         </header>
     )

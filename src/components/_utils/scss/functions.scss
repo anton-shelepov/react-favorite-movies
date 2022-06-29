@@ -2,5 +2,5 @@
 
 // Calculating size in PX to size in REM
 @function rem($sizeInPX) {
-    @return ($sizeInPX / $base-font-size) + rem;
+    @return calc($sizeInPX / $base-font-size) + rem;
 }

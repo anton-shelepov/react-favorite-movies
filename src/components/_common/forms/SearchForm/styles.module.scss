@@ -1,21 +1,55 @@
+@import "../../../_utils/scss/functions.scss";
+
 .container {
-    width: 100%;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: white;
 
-    .search_input {
+    .search_input__wrapper {
         width: 100%;
-        height: rem(35);
-        border: 0;
-        outline: none;
+        &::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            left: rem(10);
+            bottom: rem(5);
+            height: rem(3);
+            background: black;
+            transition: width 0.4s;
+        }
+        &:focus-within {
+            &::after {
+                width: calc(100% - rem(54));
+            }
+        }
+
+        .search_input {
+            width: 100%;
+            height: rem(45);
+            border: 0;
+            outline: none;
+            padding: 0 rem(10);
+        }
     }
 
     .submit_btn {
         border: 0;
-        width: 35px;
-        height: 35px;
+        height: rem(45);
+        width: rem(45);
+        background-color: white;
         cursor: pointer;
+        &:hover {
+            svg {
+                transition: transform 0.3s;
+                transform: scale(1.1);
+            }
+        }
+        svg {
+            transition: transform 0.3s;
+            width: rem(25);
+            height: rem(42);
+        }
     }
 }
