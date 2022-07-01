@@ -1,3 +1,4 @@
+import Loader from 'components/Loader'
 import MoviesList from 'containers/MoviesList'
 import { useEffect } from 'react'
 import { fetchNewestMoviesRequest } from 'redux/slices/moviesListSlice'
@@ -19,7 +20,7 @@ const HomePage: React.FC<IProps> = () => {
     const sections = [
         {
             group: MovieGroup.NEWEST,
-            title: 'Новинки',
+            title: 'Популярные новинки',
             movies: movies.filter((movie) => movie.group === MovieGroup.NEWEST),
         },
         {
@@ -42,6 +43,7 @@ const HomePage: React.FC<IProps> = () => {
                     <MoviesList moviesList={section.movies} />
                 </div>
             ))}
+            <Loader color='black' />
         </div>
     )
 }

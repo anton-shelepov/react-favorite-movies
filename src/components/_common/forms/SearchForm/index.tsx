@@ -1,5 +1,5 @@
-import GlobalSvgSelector from 'components/_utils/svg/GlobalSvgSelector'
-import SvgId from 'components/_utils/svg/svgId'
+import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
+import SvgId from 'utils/svg/svgId'
 import { FieldValues, useForm } from 'react-hook-form'
 import s from './styles.module.scss'
 

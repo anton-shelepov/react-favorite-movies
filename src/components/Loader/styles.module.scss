@@ -1,0 +1,13 @@
+.container {
+    svg {
+        animation: 1.5s infinite rotation;
+    }
+    @keyframes rotation {
+        from {
+            transform: none;
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

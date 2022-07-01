@@ -2,9 +2,10 @@ import SvgId from './svgId'
 
 interface IProps {
     id: SvgId
+    color?: string
 }
 
-const GlobalSvgSelector = ({ id }: IProps) => {
+const GlobalSvgSelector = ({ id, color = '#000000' }: IProps) => {
     switch (id) {
         case SvgId.FIND:
             return (
@@ -59,6 +60,35 @@ const GlobalSvgSelector = ({ id }: IProps) => {
                             m70 1 c0 -1 -35 -36 -77 -77 l-78 -75 70 76 c60 66 85 88 85 76z m-70 -362
                             l74 -75 -44 0 c-45 0 -45 1 -94 73 -27 39 -43 66 -36 60 19 -18 33 -16 26 2
                             -3 8 -4 15 -3 15 1 0 36 -34 77 -75z'
+                        />
+                    </g>
+                </svg>
+            )
+
+        case SvgId.FILM_REEL:
+            return (
+                <svg
+                    version='1.0'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='128.000000pt'
+                    height='128.000000pt'
+                    viewBox='0 0 128.000000 128.000000'
+                    preserveAspectRatio='xMidYMid meet'
+                >
+                    <g
+                        transform='translate(0.000000,128.000000) scale(0.100000,-0.100000)'
+                        fill={color}
+                        stroke='none'
+                    >
+                        <path
+                            d='M501 1265 c-178 -39 -348 -172 -429 -336 -127 -256 -81 -540 118
+                            -739 251 -252 649 -252 900 0 252 251 252 649 0 900 -155 156 -375 221 -589
+                            175z m227 -146 c61 -37 83 -136 46 -200 -80 -137 -284 -85 -284 71 0 121 133
+                            193 238 129z m-363 -348 c134 -75 78 -281 -76 -281 -178 0 -207 260 -34 300
+                            37 9 70 3 110 -19z m705 -4 c127 -85 76 -277 -74 -279 -155 -3 -215 202 -84
+                            282 46 28 115 26 158 -3z m-405 -67 c52 -20 52 -100 0 -120 -55 -21 -106 30
+                            -85 85 8 21 24 33 57 44 1 1 13 -3 28 -9z m53 -280 c131 -80 72 -282 -82 -282
+                            -152 0 -204 193 -76 279 43 29 112 31 158 3z'
                         />
                     </g>
                 </svg>

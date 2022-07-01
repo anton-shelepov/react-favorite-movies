@@ -10,16 +10,11 @@ interface IProps {
 const MovieCard: React.FC<IProps> = ({ movieData }) => {
     const { posterURL, rating, title, year, description } = movieData
 
-    const shortText = (text: string, maxLength: number) => {
-        if (text.length <= maxLength) return text
-        return `${text.slice(0, maxLength)}...`
-    }
-
     return (
         <div className={s.container}>
             <div className={s.block_top}>
                 <img className={s.poster} src={posterURL} alt='movie_poster' />
-                <div className={s.description}>{shortText(description, 250)}</div>
+                <div className={s.description}>{description}</div>
             </div>
             <div className={s.block_bottom}>
                 <h1 className={s.title}>{title}</h1>

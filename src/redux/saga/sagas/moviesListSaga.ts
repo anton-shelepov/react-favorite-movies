@@ -7,7 +7,7 @@ import MovieGroup from 'utils/enums/movieGroup'
 
 function* fetchNewestMoviesSaga() {
     try {
-        const response: AxiosResponse = yield call(movieAPI.getNewestMovies.bind(movieAPI), 1)
+        const response: AxiosResponse = yield call(movieAPI.getNewestMovies, 3)
         console.log(response.data)
         const data: MoviesListItem[] = response.data.docs.map((movieData: any) => ({
             id: movieData.id,
