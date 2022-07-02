@@ -1,6 +1,8 @@
 .container {
     svg {
-        animation: 1.5s infinite rotation;
+        width: 100%;
+        margin: 0 auto;
+        animation: 1.3s infinite rotation;
     }
     @keyframes rotation {
         from {

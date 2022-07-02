@@ -5,15 +5,19 @@ import { fetchNewestMoviesRequest } from 'redux/slices/moviesListSlice'
 import MovieGroup from 'utils/enums/movieGroup'
 import useAppDispatch from 'utils/hooks/useAppDispatch'
 import useAppSelector from 'utils/hooks/useAppSelector'
+import setPageTitle from 'utils/scripts/setPageTitle'
 import s from './styles.module.scss'
 
 interface IProps {}
 
 const HomePage: React.FC<IProps> = () => {
     const dispatch = useAppDispatch()
-    const movies = useAppSelector((state) => state.moviesList.movies)
+    const moviesListState = useAppSelector((state) => state.moviesList)
+
+    const movies = moviesListState.movies
 
     useEffect(() => {
+        setPageTitle('Главная')
         dispatch(fetchNewestMoviesRequest())
     }, [])
 
@@ -40,10 +44,13 @@ const HomePage: React.FC<IProps> = () => {
             {sections.map((section) => (
                 <div key={section.title} className={s.section}>
                     <h1 className={s.section_title}>{section.title}</h1>
-                    <MoviesList moviesList={section.movies} />
+                    {section.movies.length === 0 && moviesListState.isLoading ? (
+                        <Loader />
+                    ) : (
+                        <MoviesList moviesList={section.movies} />
+                    )}
                 </div>
             ))}
-            <Loader color='black' />
         </div>
     )
 }

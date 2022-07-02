@@ -3,9 +3,11 @@ import SvgId from './svgId'
 interface IProps {
     id: SvgId
     color?: string
+    height?: number
+    width?: number
 }
 
-const GlobalSvgSelector = ({ id, color = '#000000' }: IProps) => {
+const GlobalSvgSelector = ({ id, color = 'white', height, width }: IProps) => {
     switch (id) {
         case SvgId.FIND:
             return (
@@ -70,9 +72,9 @@ const GlobalSvgSelector = ({ id, color = '#000000' }: IProps) => {
                 <svg
                     version='1.0'
                     xmlns='http://www.w3.org/2000/svg'
-                    width='128.000000pt'
-                    height='128.000000pt'
-                    viewBox='0 0 128.000000 128.000000'
+                    width={`${width}pt`}
+                    height={`${height}pt`}
+                    viewBox='0 0 128 128'
                     preserveAspectRatio='xMidYMid meet'
                 >
                     <g

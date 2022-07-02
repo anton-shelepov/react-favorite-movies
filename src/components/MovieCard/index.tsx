@@ -1,3 +1,6 @@
+import preloadFone from 'assets/images/preload-fone.png'
+import Loader from 'components/Loader'
+import { useState } from 'react'
 import { MoviesListItem } from 'redux/slices/moviesListSlice/types'
 import imdbIcon from '../../assets/icons/imdb-icon.png'
 import kinopoiskIcon from '../../assets/icons/kinopoisk-icon.png'
@@ -9,11 +12,23 @@ interface IProps {
 
 const MovieCard: React.FC<IProps> = ({ movieData }) => {
     const { posterURL, rating, title, year, description } = movieData
-
+    const [isImageLoaded, setIsImageLoaded] = useState(false)
+    const onImageLoad = () => {
+        console.log('load', isImageLoaded)
+        setIsImageLoaded(true)
+    }
     return (
         <div className={s.container}>
             <div className={s.block_top}>
-                <img className={s.poster} src={posterURL} alt='movie_poster' />
+                <img className={s.poster} src={posterURL} alt='movie_poster' onLoad={onImageLoad} />
+                <div className={s.background_fill}>
+                    <img src={preloadFone} alt='preload' />
+                </div>
+                {!isImageLoaded && (
+                    <div className={s.loader}>
+                        <Loader size='small' color='#ffffff' />
+                    </div>
+                )}
                 <div className={s.description}>{description}</div>
             </div>
             <div className={s.block_bottom}>

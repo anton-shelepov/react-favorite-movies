@@ -13,7 +13,28 @@
         position: relative;
 
         .poster {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             max-width: 100%;
+            max-height: rem(288);
+            z-index: 2;
+        }
+
+        .background_fill {
+            z-index: 0;
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
         }
 
         .description {
@@ -23,7 +44,7 @@
             left: 0;
             transition: all 0.3s ease-in;
             word-wrap: break-word;
-            overflow: hidden;
+            overflow-y: scroll;
             height: 0;
             text-align: center;
             font-size: rem(14);
@@ -31,15 +52,22 @@
             color: grey;
             border-bottom: 2px solid white;
             background-color: rgb(0, 0, 0);
+            z-index: 4;
             &::-webkit-scrollbar {
-                width: 0;
+                transform: rotate(180deg);
+                width: 2px;
+            }
+            &::-webkit-scrollbar-track {
+                background-color: rgba(0, 0, 0, 0.342);
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: rgba(255, 255, 255, 0.11);
             }
         }
     }
     &:hover {
         .description {
             height: 100%;
-            overflow-y: scroll;
             padding-bottom: 15px;
         }
     }
