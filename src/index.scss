@@ -3,15 +3,13 @@
 body {
     font-family: "Roboto", regular;
     &::-webkit-scrollbar {
-        transform: rotate(180deg);
-        width: 12px;
+        width: 10px;
     }
     &::-webkit-scrollbar-track {
-        background-color: transparent;
+        background-color: rgb(233, 233, 233);
     }
     &::-webkit-scrollbar-thumb {
         background-color: rgb(0, 0, 0);
-        border: 2px #ffffff solid;
     }
 }
 

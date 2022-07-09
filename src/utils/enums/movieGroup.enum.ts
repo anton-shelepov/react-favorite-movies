@@ -1,7 +1,7 @@
 enum MovieGroup {
     NEWEST = 'NEWEST',
-    FILM = 'FILM',
-    SERIAL = 'SERIAL',
+    FILMS = 'FILMS',
+    SERIALS = 'SERIALS',
 }
 
 export default MovieGroup

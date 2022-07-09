@@ -1,7 +1,7 @@
-import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
-import SvgId from 'utils/svg/svgId'
 import { FieldValues, useForm } from 'react-hook-form'
-import s from './styles.module.scss'
+import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
+import SvgId from 'utils/svg/svgId.enum'
+import s from './SearchForm.module.scss'
 
 interface IProps {}
 

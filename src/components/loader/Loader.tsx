@@ -1,6 +1,6 @@
 import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
-import SvgId from 'utils/svg/svgId'
-import s from './styles.module.scss'
+import SvgId from 'utils/svg/svgId.enum'
+import s from './Loader.module.scss'
 
 interface IProps {
     color?: string

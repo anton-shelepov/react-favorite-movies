@@ -1,23 +1,13 @@
-import MovieGroup from 'utils/enums/movieGroup'
+import { MovieGroupsData } from 'models/moviesListModels'
+import MovieGroup from 'utils/enums/movieGroup.enum'
 
 export interface IMoviesListState {
-    movies: MoviesListItem[]
+    movieGroups: MovieGroupsData[]
     isLoading: boolean
     error: {} | null
 }
 
-export type MoviesListItem = {
-    id: number
-    posterURL: string
-    title: string
-    description: string
-    rating: Rating
-    type: string
-    year: number
+export type MoviesRequestPayload = {
+    searchParams: string
     group: MovieGroup
-}
-
-export type Rating = {
-    kp: number
-    imdb: number
 }

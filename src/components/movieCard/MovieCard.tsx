@@ -1,10 +1,10 @@
 import preloadFone from 'assets/images/preload-fone.png'
-import Loader from 'components/Loader'
+import Loader from 'components/loader/Loader'
+import { MoviesListItem } from 'models/moviesListModels'
 import { useState } from 'react'
-import { MoviesListItem } from 'redux/slices/moviesListSlice/types'
 import imdbIcon from '../../assets/icons/imdb-icon.png'
 import kinopoiskIcon from '../../assets/icons/kinopoisk-icon.png'
-import s from './styles.module.scss'
+import s from './MovieCard.module.scss'
 
 interface IProps {
     movieData: MoviesListItem

@@ -1,0 +1,13 @@
+@import "/src/utils/scss/functions.scss";
+
+.title {
+    margin: rem(25) 0 rem(15) 0;
+    padding-bottom: rem(5);
+    border-bottom: 4px black solid;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
+}

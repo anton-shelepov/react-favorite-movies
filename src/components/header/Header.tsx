@@ -1,7 +1,7 @@
-import SearchForm from 'components/_common/forms/SearchForm'
+import SearchForm from 'components/_common/forms/searchForm/SearchForm'
 import React from 'react'
-import Logo from '../Logo'
-import s from './styles.module.scss'
+import Logo from '../logo/Logo'
+import s from './Header.module.scss'
 
 const Header: React.FC = () => {
     return (

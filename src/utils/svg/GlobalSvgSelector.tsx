@@ -1,4 +1,4 @@
-import SvgId from './svgId'
+import SvgId from './svgId.enum'
 
 interface IProps {
     id: SvgId
@@ -91,6 +91,57 @@ const GlobalSvgSelector = ({ id, color = 'white', height, width }: IProps) => {
                             282 46 28 115 26 158 -3z m-405 -67 c52 -20 52 -100 0 -120 -55 -21 -106 30
                             -85 85 8 21 24 33 57 44 1 1 13 -3 28 -9z m53 -280 c131 -80 72 -282 -82 -282
                             -152 0 -204 193 -76 279 43 29 112 31 158 3z'
+                        />
+                    </g>
+                </svg>
+            )
+
+        case SvgId.PAGINATION_ONE_PAGE_ARROW:
+            return (
+                <svg
+                    version='1.0'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='64.000000pt'
+                    height='64.000000pt'
+                    viewBox='0 0 64.000000 64.000000'
+                    preserveAspectRatio='xMidYMid meet'
+                >
+                    <g
+                        transform='translate(0.000000,64.000000) scale(0.100000,-0.100000)'
+                        fill={color}
+                        stroke='none'
+                    >
+                        <path
+                            d='M42 477 l-42 -42 160 -160 160 -160 160 160 160 160 -45 45 -45 45
+                            -115 -115 -115 -115 -113 113 c-62 61 -115 112 -118 112 -2 0 -24 -19 -47 -43z'
+                        />
+                    </g>
+                </svg>
+            )
+
+        case SvgId.PAGINATION_ALL_PAGE_ARROW:
+            return (
+                <svg
+                    version='1.0'
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='64.000000pt'
+                    height='64.000000pt'
+                    viewBox='0 0 64.000000 64.000000'
+                    preserveAspectRatio='xMidYMid meet'
+                >
+                    <g
+                        transform='translate(0.000000,64.000000) scale(0.100000,-0.100000)'
+                        fill={color}
+                        stroke='none'
+                    >
+                        <path
+                            d='M37 602 c-20 -21 -37 -42 -37 -48 0 -5 72 -81 160 -169 l160 -160
+                            160 160 c88 88 160 165 160 170 0 13 -72 85 -85 85 -5 0 -60 -51 -122 -112
+                            l-113 -113 -113 113 c-62 61 -117 112 -123 112 -5 0 -27 -17 -47 -38z'
+                        />
+                        <path
+                            d='M40 365 l-45 -45 163 -163 162 -162 162 162 163 163 -48 47 -47 48
+                            -115 -115 -115 -115 -113 113 c-62 61 -115 112 -118 112 -2 0 -25 -20 -49 -45z'
                         />
                     </g>
                 </svg>
