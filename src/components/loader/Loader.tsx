@@ -5,8 +5,8 @@ import s from './Loader.module.scss'
 interface IProps {
     color?: string
     size?: 'large' | 'small'
-    containerMaxHeight?: number
-    containerMaxWidth?: number
+    containerMaxHeight?: string
+    containerMaxWidth?: string
 }
 
 const Loader: React.FC<IProps> = ({

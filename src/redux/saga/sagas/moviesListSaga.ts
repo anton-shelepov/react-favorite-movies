@@ -32,6 +32,7 @@ function* fetchMoviesSaga({
             pages: {
                 count: response.data.pages,
                 limit: response.data.limit,
+                currentPage: response.data.page,
             },
         }
 

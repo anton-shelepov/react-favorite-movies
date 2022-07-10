@@ -26,18 +26,26 @@ const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayl
             }),
         )
     }
-    if (moviesList === undefined) return <Loader />
 
     return (
         <>
             <h1 className={s.title}>{title}</h1>
-            {moviesList === undefined}
-            <div className={s.container}>
-                {moviesList.movies.map((movie) => (
-                    <MovieCard key={movie.id} movieData={movie} />
-                ))}
-            </div>
-            <Pagination pages={moviesList.pages} onPageChange={onPageChange} />
+            {moviesList === undefined ? (
+                <Loader />
+            ) : (
+                <>
+                    <div className={s.container}>
+                        {moviesList.movies.map((movie) => (
+                            <MovieCard key={movie.id} movieData={movie} />
+                        ))}
+                    </div>
+                    <Pagination
+                        pages={moviesList.pages}
+                        onPageChange={onPageChange}
+                        currentPage={moviesList.pages.currentPage}
+                    />
+                </>
+            )}
         </>
     )
 }

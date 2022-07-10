@@ -15,6 +15,7 @@ export type MovieGroupsData = {
     pages: {
         count: number
         limit: number
+        currentPage: number
     }
 }
 

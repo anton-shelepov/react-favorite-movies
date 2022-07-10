@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react'
+import { MouseEventHandler } from 'react'
 import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
 import SvgId from 'utils/svg/svgId.enum'
 import s from './Pagination.module.scss'
@@ -9,6 +9,7 @@ interface IPaginationProps {
         count: number
         limit: number
     }
+    currentPage: number
 }
 
 interface IPageNumberProps {
@@ -17,8 +18,7 @@ interface IPageNumberProps {
     currentPage: number
 }
 
-const Pagination: React.FC<IPaginationProps> = ({ onPageChange, pages }) => {
-    const [currentPage, setCurrentPage] = useState(1)
+const Pagination: React.FC<IPaginationProps> = ({ onPageChange, pages, currentPage }) => {
     const pageNumbers = []
     for (
         let currentPageNumber = currentPage === 1 || currentPage === 2 ? 1 : currentPage - 2;
@@ -32,24 +32,19 @@ const Pagination: React.FC<IPaginationProps> = ({ onPageChange, pages }) => {
     }
     const onHandleStartClick = () => {
         onPageChange(1)
-        setCurrentPage(1)
     }
     const onHandlePrevClick = () => {
         onPageChange(currentPage - 1)
-        setCurrentPage(currentPage - 1)
     }
     const onHandleNextClick = () => {
         onPageChange(currentPage + 1)
-        setCurrentPage(currentPage + 1)
     }
     const onHandleEndClick = () => {
         onPageChange(pages.count)
-        setCurrentPage(pages.count)
     }
     const onHandlePageClick: MouseEventHandler<HTMLSpanElement> = (e) => {
         const page = +e.currentTarget.innerText
         onPageChange(page)
-        setCurrentPage(page)
     }
 
     const PageNumber: React.FC<IPageNumberProps> = ({
