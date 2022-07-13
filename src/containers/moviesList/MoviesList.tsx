@@ -28,7 +28,7 @@ const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayl
     }
 
     return (
-        <>
+        <section>
             <h1 className={s.title}>{title}</h1>
             {moviesList === undefined ? (
                 <Loader />
@@ -46,7 +46,7 @@ const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayl
                     />
                 </>
             )}
-        </>
+        </section>
     )
 }
 

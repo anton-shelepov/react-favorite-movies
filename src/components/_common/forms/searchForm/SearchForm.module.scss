@@ -1,5 +1,6 @@
 @import "/src/utils/scss/functions.scss";
 @import "/src/utils/scss/mixins.scss";
+@import "/src/utils/scss/variables.scss";
 
 .container {
     position: relative;
@@ -28,7 +29,7 @@
 
         .search_input {
             width: 100%;
-            height: rem(45);
+            height: rem(50);
             border: 0;
             outline: none;
             padding: 0 rem(10);
@@ -63,20 +64,90 @@
         max-height: 0;
         overflow-y: scroll;
         transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
-        background-color: #ffffff;
+        background-color: $color-white;
         width: 100%;
-        color: #000000;
+        color: $color-black;
         -webkit-box-shadow: 0px 21px 25px -7px rgba(34, 60, 80, 0.2);
         -moz-box-shadow: 0px 21px 25px -7px rgba(34, 60, 80, 0.2);
         box-shadow: 0px 21px 25px -7px rgba(34, 60, 80, 0.2);
 
         @include main_scrollbar;
 
+        .empty_message {
+            display: block;
+            text-align: center;
+            color: $color-light-grey;
+            margin: rem(5) 0;
+        }
+
         .result_card {
             display: flex;
+            border-bottom: 2px solid rgb(0, 0, 0);
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.027);
+            }
+
             .block_left {
+                padding: rem(5) rem(5) rem(5) rem(5);
+                margin-right: rem(10);
+                background-color: black;
+
                 .poster {
-                    max-width: rem(80);
+                    max-height: rem(120);
+                }
+            }
+
+            .block_right {
+                padding: rem(15) rem(15) rem(15) 0;
+                max-width: 100%;
+                width: 100%;
+
+                .block_top {
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+
+                    .title {
+                        font-size: rem(22);
+                        line-height: 1;
+                        margin-bottom: rem(5);
+                    }
+                    .rating {
+                        display: flex;
+                        flex-direction: row;
+
+                        .rating_item {
+                            background-color: black;
+                            padding: rem(5);
+                            display: flex;
+                            align-items: center;
+                            margin-left: rem(5);
+                            font-size: rem(13);
+                            color: white;
+                            img {
+                                margin-left: rem(7);
+                                width: rem(18);
+                            }
+                        }
+                    }
+                }
+
+                .additional {
+                    color: $color-dark-grey;
+                }
+
+                .description {
+                    flex: 1;
+                    font-size: rem(15);
+                    color: $color-light-grey;
+                    margin-top: rem(5);
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
                 }
             }
         }
@@ -84,7 +155,7 @@
 
     // Modificator
     .uncollapsed {
-        padding: rem(15) 0 rem(15) 0;
-        max-height: 50vh;
+        padding: rem(10) 0 rem(10) 0;
+        max-height: 70vh;
     }
 }

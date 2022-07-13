@@ -1,5 +1,7 @@
 import privateClient from 'api/privateClient'
 import { AxiosResponse } from 'axios'
+import classNames from 'classnames'
+import Loader from 'components/loader/Loader'
 import { MoviesListItem } from 'models/moviesListModels'
 import { ChangeEventHandler, FocusEvent, MutableRefObject, useRef, useState } from 'react'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
@@ -11,7 +13,7 @@ import s from './SearchForm.module.scss'
 interface IProps {}
 
 const SearchForm: React.FC<IProps> = () => {
-    const [searchResults, setSearchResults] = useState<MoviesListItem[]>([])
+    const [searchResults, setSearchResults] = useState<MoviesListItem[] | null>(null)
     const [showResults, setShowResults] = useState(false)
     const [isSearching, setIsSearching] = useState(false)
 
@@ -27,11 +29,13 @@ const SearchForm: React.FC<IProps> = () => {
     }
 
     const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const searchDelayTime = 300
         const searchValue = e.currentTarget.value
+
         clearTimeout(searchDelay.current)
 
         if (!searchPattern.test(searchValue)) {
-            setSearchResults([])
+            setSearchResults(null)
             return
         }
 
@@ -61,12 +65,12 @@ const SearchForm: React.FC<IProps> = () => {
                 })),
             )
             setIsSearching(false)
-        }, 500)
+        }, searchDelayTime)
     }
 
     const onInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
-        if (e.currentTarget.value === '' && searchResults.length !== 0) {
-            setSearchResults([])
+        if (e.currentTarget.value === '' && searchResults?.length !== 0) {
+            setSearchResults(null)
         }
         setShowResults(true)
     }
@@ -74,6 +78,11 @@ const SearchForm: React.FC<IProps> = () => {
     const onInputBlur = () => {
         setShowResults(false)
     }
+
+    const searchResultsClasses = classNames(
+        s.search_results,
+        showResults && searchResults !== null ? s.uncollapsed : undefined,
+    )
 
     return (
         <form onSubmit={handleSubmit(onFormSubmit)} className={s.container} autoComplete='off'>
@@ -103,14 +112,20 @@ const SearchForm: React.FC<IProps> = () => {
                 />
             </div>
 
+            {isSearching && <Loader color='black' containerMaxWidth='50%' size='small' />}
+
             <button className={s.submit_btn} type='submit'>
                 <GlobalSvgSelector id={SvgId.FIND} />
             </button>
 
-            <div className={`${s.search_results} ${showResults ? s.uncollapsed : ''}`}>
-                {searchResults.map((movie) => (
-                    <ResultCard key={movie.id} movie={movie} />
-                ))}
+            <div className={searchResultsClasses}>
+                {searchResults?.length === 0 ? (
+                    <span className={s.empty_message}>
+                        {`По запросу "${searchInputElement.current?.value}" ничего не найдено`}
+                    </span>
+                ) : (
+                    searchResults?.map((movie) => <ResultCard key={movie.id} movie={movie} />)
+                )}
             </div>
         </form>
     )
