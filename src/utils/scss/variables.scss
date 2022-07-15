@@ -1,6 +1,24 @@
+// Defaults
+
 $base-font-size: 16;
+
+// Header
+
+$header-height-desktop: 100;
+$header-height-mobile: 80;
+
+// Colors
 
 $color-black: #000000;
 $color-white: #ffffff;
 $color-light-grey: rgb(124, 124, 124);
 $color-dark-grey: rgb(58, 58, 58);
+
+// Screen sizes breakpoints (lg md sm xs)
+
+// Exports
+
+:export {
+    headerHeightDesktop: $header-height-desktop;
+    headerHeightMobile: $header-height-mobile;
+}

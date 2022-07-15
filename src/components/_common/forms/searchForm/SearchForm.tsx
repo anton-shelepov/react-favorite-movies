@@ -21,7 +21,7 @@ const SearchForm: React.FC<IProps> = () => {
     const searchDelay = useRef(setTimeout(() => {}, 0))
     const searchInputElement: MutableRefObject<HTMLInputElement | null> = useRef(null)
 
-    const searchPattern = /^[a-zA-Zа-яА-Я0-9_: ,+.]+$/g
+    const searchPattern = /^[a-zA-Zа-яА-Я0-9_: ,+/().]+$/g
 
     const onFormSubmit = ({ searchText }: FieldValues) => {
         searchInputElement.current?.blur()
@@ -29,7 +29,7 @@ const SearchForm: React.FC<IProps> = () => {
     }
 
     const onInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-        const searchDelayTime = 300
+        const searchBetweenInputsDelay = 250
         const searchValue = e.currentTarget.value
 
         clearTimeout(searchDelay.current)
@@ -65,7 +65,7 @@ const SearchForm: React.FC<IProps> = () => {
                 })),
             )
             setIsSearching(false)
-        }, searchDelayTime)
+        }, searchBetweenInputsDelay)
     }
 
     const onInputFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
