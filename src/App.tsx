@@ -1,4 +1,4 @@
-import HomePage from 'containers/_pages/home-page/HomePage'
+import HomePage from 'containers/_pages/homePage/HomePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import s from './App.module.scss'
 import Header from './components/header/Header'

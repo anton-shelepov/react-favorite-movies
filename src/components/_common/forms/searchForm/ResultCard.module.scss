@@ -1,0 +1,74 @@
+@import "/src/utils/scss/functions.scss";
+@import "/src/utils/scss/mixins.scss";
+@import "/src/utils/scss/variables.scss";
+
+.result_card {
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.027);
+    }
+
+    .block_left {
+        padding: rem(5) rem(5) rem(5) rem(5);
+        background-color: black;
+
+        .poster {
+            max-width: rem(85);
+        }
+    }
+
+    .block_right {
+        padding: rem(15);
+        max-width: 100%;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.116);
+
+        .block_top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            .title {
+                font-size: rem(23);
+                line-height: 1;
+                margin-bottom: rem(5);
+            }
+            .rating {
+                display: flex;
+                flex-direction: row;
+
+                .rating_item {
+                    background-color: black;
+                    padding: rem(5);
+                    display: flex;
+                    align-items: center;
+                    margin-left: rem(5);
+                    font-size: rem(13);
+                    color: white;
+                    img {
+                        margin-left: rem(7);
+                        width: rem(18);
+                    }
+                }
+            }
+        }
+
+        .additional {
+            color: $color-dark-grey;
+        }
+
+        .description {
+            flex: 1;
+            font-size: rem(15);
+            color: $color-light-grey;
+            margin-top: rem(10);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+}

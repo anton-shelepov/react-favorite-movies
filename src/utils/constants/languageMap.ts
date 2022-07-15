@@ -4,6 +4,7 @@ const languageMap: { [key: string]: string } = {
     ['mini-series']: 'Мини-сериал',
     ['anime']: 'Аниме',
     ['carton']: 'Мультфильм',
+    ['cartoon']: 'Мультфильм',
     ['animated-series']: 'Анимационный фильм',
 }
 

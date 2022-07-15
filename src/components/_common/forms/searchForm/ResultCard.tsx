@@ -2,7 +2,7 @@ import imdbIcon from 'assets/icons/imdb-icon.png'
 import kinopoiskIcon from 'assets/icons/kinopoisk-icon.png'
 import { MoviesListItem } from 'models/moviesListModels'
 import languageMap from 'utils/constants/languageMap'
-import s from './SearchForm.module.scss'
+import s from './ResultCard.module.scss'
 
 interface IProps {
     movie: MoviesListItem

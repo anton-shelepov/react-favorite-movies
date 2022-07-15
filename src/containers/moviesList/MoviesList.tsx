@@ -1,7 +1,8 @@
-import Loader from 'components/loader/Loader'
 import MovieCard from 'components/movieCard/MovieCard'
+import MovieCardSkeleton from 'components/movieCardSkeleton/MovieCardSkeleton'
 import Pagination from 'components/pagination/Pagination'
 import { MovieGroupsData } from 'models/moviesListModels'
+import { LegacyRef, useEffect, useRef } from 'react'
 import { fetchMoviesRequest } from 'redux/slices/moviesListSlice/moviesListSlice'
 import MovieGroup from 'utils/enums/movieGroup.enum'
 import useAppDispatch from 'utils/hooks/useAppDispatch'
@@ -14,10 +15,16 @@ interface IProps {
         searchParams: (page: number) => string
         group: MovieGroup
     }
+    withSorting?: boolean
 }
 
 const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayload }) => {
     const dispatch = useAppDispatch()
+    useEffect(() => {
+        console.log('render')
+    })
+    const sectionElement: LegacyRef<HTMLElement> | undefined = useRef(null)
+    console.log(sectionElement.current)
     const onPageChange = (page: number) => {
         dispatch(
             fetchMoviesRequest({
@@ -28,23 +35,21 @@ const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayl
     }
 
     return (
-        <section>
+        <section ref={sectionElement}>
             <h1 className={s.title}>{title}</h1>
-            {moviesList === undefined ? (
-                <Loader />
-            ) : (
-                <>
-                    <div className={s.container}>
-                        {moviesList.movies.map((movie) => (
-                            <MovieCard key={movie.id} movieData={movie} />
-                        ))}
-                    </div>
-                    <Pagination
-                        pages={moviesList.pages}
-                        onPageChange={onPageChange}
-                        currentPage={moviesList.pages.currentPage}
-                    />
-                </>
+            <div className={s.container}>
+                {moviesList === undefined ? (
+                    <MovieCardSkeleton cardsCount={10} />
+                ) : (
+                    moviesList.movies.map((movie) => <MovieCard key={movie.id} movieData={movie} />)
+                )}
+            </div>
+            {moviesList?.pages !== undefined && (
+                <Pagination
+                    pages={moviesList.pages}
+                    onPageChange={onPageChange}
+                    currentPage={moviesList.pages.currentPage}
+                />
             )}
         </section>
     )

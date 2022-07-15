@@ -14,7 +14,6 @@ const MovieCard: React.FC<IProps> = ({ movieData }) => {
     const { posterURL, rating, title, year, description } = movieData
     const [isImageLoaded, setIsImageLoaded] = useState(false)
     const onImageLoad = () => {
-        console.log('load', isImageLoaded)
         setIsImageLoaded(true)
     }
     return (
@@ -33,7 +32,7 @@ const MovieCard: React.FC<IProps> = ({ movieData }) => {
             </div>
             <div className={s.block_bottom}>
                 <h1 className={s.title}>{title}</h1>
-                <span className={s.year}>{year}</span>
+                <span className={s.additional}>{year}</span>
                 <div className={s.ratings}>
                     <div className={s.rating}>
                         <img src={kinopoiskIcon} alt='kinopoisk_rating' />
