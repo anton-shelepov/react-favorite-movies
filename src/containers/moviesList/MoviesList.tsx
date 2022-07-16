@@ -17,9 +17,15 @@ interface IProps {
         group: MovieGroup
     }
     withSorting?: boolean
+    moviesLimit?: number
 }
 
-const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayload }) => {
+const MoviesList: React.FC<IProps> = ({
+    moviesList,
+    title,
+    fetchMoviesActionPayload,
+    moviesLimit = 10,
+}) => {
     const dispatch = useAppDispatch()
     const sectionElement: LegacyRef<HTMLElement> | undefined = useRef(null)
 
@@ -39,11 +45,11 @@ const MoviesList: React.FC<IProps> = ({ moviesList, title, fetchMoviesActionPayl
     }
 
     return (
-        <section ref={sectionElement} about={moviesList?.group}>
+        <section ref={sectionElement} about={moviesList?.group.toLowerCase()}>
             <h1 className={s.title}>{title}</h1>
             <div className={s.container}>
                 {!moviesList ? (
-                    <MovieCardSkeleton cardsCount={10} />
+                    <MovieCardSkeleton cardsCount={moviesLimit} />
                 ) : (
                     moviesList.movies.map((movie) => <MovieCard key={movie.id} movieData={movie} />)
                 )}

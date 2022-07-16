@@ -8,6 +8,8 @@
     left: 0;
     width: 100vw;
     z-index: 999;
+    height: rem($header-height-desktop);
+    transition: top 0.3s;
 
     .content_wrapper {
         display: flex;
@@ -15,7 +17,6 @@
         align-items: center;
         max-width: rem(1200);
         padding: rem(15);
-        height: rem($header-height-desktop);
         width: 100%;
         margin: 0 auto;
         color: white;
@@ -26,4 +27,9 @@
             margin: 0 rem(50);
         }
     }
+}
+
+//Modificator
+.hide {
+    top: -$header-height-desktop + px;
 }

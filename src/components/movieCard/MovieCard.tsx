@@ -28,7 +28,7 @@ const MovieCard: React.FC<IProps> = ({ movieData }) => {
                         <Loader size='small' color='#ffffff' />
                     </div>
                 )}
-                <div className={s.description}>{description}</div>
+                {description && <div className={s.description}>{description}</div>}
             </div>
             <div className={s.block_bottom}>
                 <h1 className={s.title}>{title}</h1>

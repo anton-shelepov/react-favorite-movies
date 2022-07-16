@@ -59,11 +59,10 @@
         position: absolute;
         top: 100%;
         left: 0;
-        height: 0;
         height: fit-content;
         max-height: 0;
         overflow-y: scroll;
-        transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: max-height 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
         background-color: $color-white;
         width: 100%;
         color: $color-black;

@@ -13,7 +13,6 @@ interface IProps {}
 const HomePage: React.FC<IProps> = () => {
     const dispatch = useAppDispatch()
     const moviesListState = useAppSelector((state) => state.moviesList)
-
     const movieGroups = moviesListState.movieGroups
 
     useEffect(() => {

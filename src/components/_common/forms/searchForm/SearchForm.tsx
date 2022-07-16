@@ -3,16 +3,27 @@ import { AxiosResponse } from 'axios'
 import classNames from 'classnames'
 import Loader from 'components/loader/Loader'
 import { MoviesListItem } from 'models/moviesListModels'
-import { ChangeEventHandler, FocusEvent, MutableRefObject, useRef, useState } from 'react'
+import {
+    ChangeEventHandler,
+    FocusEvent,
+    MutableRefObject,
+    useEffect,
+    useRef,
+    useState,
+} from 'react'
 import { Controller, FieldValues, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
+import { createSearchParams } from 'react-router-dom'
 import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
 import SvgId from 'utils/svg/svgId.enum'
-import ResultCard from './ResultCard'
+import ResultCard from './resultCard/ResultCard'
 import s from './SearchForm.module.scss'
 
-interface IProps {}
+interface IProps {
+    isHide: boolean
+}
 
-const SearchForm: React.FC<IProps> = () => {
+const SearchForm: React.FC<IProps> = ({ isHide }) => {
     const [searchResults, setSearchResults] = useState<MoviesListItem[] | null>(null)
     const [showResults, setShowResults] = useState(false)
     const [isSearching, setIsSearching] = useState(false)
@@ -21,9 +32,29 @@ const SearchForm: React.FC<IProps> = () => {
     const searchDelay = useRef(setTimeout(() => {}, 0))
     const searchInputElement: MutableRefObject<HTMLInputElement | null> = useRef(null)
 
+    const navigate = useNavigate()
+
     const searchPattern = /^[a-zA-Zа-яА-Я0-9_: ,+/().]+$/g
 
+    useEffect(() => {
+        if (isHide) {
+            setShowResults(false)
+            searchInputElement.current?.blur()
+        }
+    }, [isHide])
+
     const onFormSubmit = ({ searchText }: FieldValues) => {
+        navigate({
+            pathname: 'search',
+            search: createSearchParams({
+                field: 'name',
+                search: searchText,
+                isStrict: 'false',
+                sortField: 'votes.kp',
+                sortType: '-1',
+                limit: '20',
+            }).toString(),
+        })
         searchInputElement.current?.blur()
         reset({ searchText: '' })
     }
