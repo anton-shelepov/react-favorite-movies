@@ -3,6 +3,7 @@ import MovieCardSkeleton from 'components/movieCardSkeleton/MovieCardSkeleton'
 import Pagination from 'components/pagination/Pagination'
 import { MovieGroupsData } from 'models/moviesListModels'
 import { LegacyRef, useRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { fetchMoviesRequest } from 'redux/slices/moviesListSlice/moviesListSlice'
 import MovieGroup from 'utils/enums/movieGroup.enum'
 import useAppDispatch from 'utils/hooks/useAppDispatch'
@@ -28,6 +29,7 @@ const MoviesList: React.FC<IProps> = ({
 }) => {
     const dispatch = useAppDispatch()
     const sectionElement: LegacyRef<HTMLElement> | undefined = useRef(null)
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const onPageChange = (page: number) => {
         dispatch(
@@ -36,6 +38,7 @@ const MoviesList: React.FC<IProps> = ({
                 searchParams: fetchMoviesActionPayload.searchParams(page),
             }),
         )
+
         const sectionYPos = sectionElement.current?.offsetTop
         const headerHeight = scssVariables.headerHeightDesktop
 

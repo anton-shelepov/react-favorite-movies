@@ -1,5 +1,5 @@
 import MoviesList from 'containers/moviesList/MoviesList'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { fetchMoviesRequest } from 'redux/slices/moviesListSlice/moviesListSlice'
 import MovieGroup from 'utils/enums/movieGroup.enum'
@@ -10,30 +10,35 @@ import s from './SearchPage.module.scss'
 interface IProps {}
 
 const SearchPage: React.FC<IProps> = (props) => {
-    const [searchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useAppDispatch()
-
-    const requestMoviesParams = `?${Array.from(searchParams)
-        .map((param) => `${param[0]}=${param[1]}`)
-        .toString()
-        .replaceAll(',', '&')}`
-
     const searchedMovies = useMoviesByGroup(MovieGroup.SEARCH)
+
     const moviesLimitOnPage = searchParams.get('limit') ?? 20
+
+    const requestMoviesParams = useMemo(() => {
+        return `?${Array.from(searchParams)
+            .map((param) => `${param[0]}=${param[1]}`)
+            .toString()
+            .replaceAll(',', '&')}`
+    }, [searchParams])
 
     useEffect(() => {
         dispatch(
             fetchMoviesRequest({ group: MovieGroup.SEARCH, searchParams: requestMoviesParams }),
         )
-    }, [searchParams])
+    }, [])
 
     return (
         <div className={s.container}>
             <MoviesList
                 moviesList={searchedMovies}
-                fetchMoviesActionPayload={{ group: MovieGroup.SEARCH, searchParams: () => '' }}
+                fetchMoviesActionPayload={{
+                    group: MovieGroup.SEARCH,
+                    searchParams: (page: number) => `${requestMoviesParams}&page=${page}`,
+                }}
                 title={`Результаты поиска по "${searchParams.get('search')}"`}
-                moviesLimit={+moviesLimitOnPage > 50 ? +moviesLimitOnPage : 50}
+                moviesLimit={+moviesLimitOnPage}
             />
         </div>
     )

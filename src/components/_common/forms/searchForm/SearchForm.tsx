@@ -52,6 +52,7 @@ const SearchForm: React.FC<IProps> = ({ isHide }) => {
                 isStrict: 'false',
                 sortField: 'votes.kp',
                 sortType: '-1',
+                page: '1',
                 limit: '20',
             }).toString(),
         })
