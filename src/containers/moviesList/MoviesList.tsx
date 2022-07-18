@@ -19,6 +19,7 @@ interface IProps {
     }
     withSorting?: boolean
     moviesLimit?: number
+    withSearchParamPagination?: boolean
 }
 
 const MoviesList: React.FC<IProps> = ({
@@ -26,19 +27,29 @@ const MoviesList: React.FC<IProps> = ({
     title,
     fetchMoviesActionPayload,
     moviesLimit = 10,
+    withSearchParamPagination,
 }) => {
     const dispatch = useAppDispatch()
     const sectionElement: LegacyRef<HTMLElement> | undefined = useRef(null)
     const [searchParams, setSearchParams] = useSearchParams()
 
     const onPageChange = (page: number) => {
+        scrollToTopOfSection()
+
+        if (withSearchParamPagination) {
+            setSearchParams({ ...Object.fromEntries(searchParams), page: page.toString() })
+            return
+        }
+
         dispatch(
             fetchMoviesRequest({
                 group: fetchMoviesActionPayload.group,
                 searchParams: fetchMoviesActionPayload.searchParams(page),
             }),
         )
+    }
 
+    const scrollToTopOfSection = () => {
         const sectionYPos = sectionElement.current?.offsetTop
         const headerHeight = scssVariables.headerHeightDesktop
 

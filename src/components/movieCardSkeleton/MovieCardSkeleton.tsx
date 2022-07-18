@@ -8,7 +8,7 @@ interface IProps {
 
 const MovieCardSkeleton: React.FC<IProps> = ({ cardsCount }) => {
     return (
-        <SkeletonTheme baseColor='#161616' highlightColor='#202020' borderRadius={0}>
+        <SkeletonTheme baseColor='#181818' highlightColor='#202020' borderRadius={0}>
             {Array(cardsCount)
                 .fill(0)
                 .map((_, index) => (

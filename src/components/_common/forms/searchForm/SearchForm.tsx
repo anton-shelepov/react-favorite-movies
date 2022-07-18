@@ -20,28 +20,29 @@ import ResultCard from './resultCard/ResultCard'
 import s from './SearchForm.module.scss'
 
 interface IProps {
-    isHide: boolean
+    isHeaderHidden: boolean
 }
 
-const SearchForm: React.FC<IProps> = ({ isHide }) => {
+const SearchForm: React.FC<IProps> = ({ isHeaderHidden }) => {
     const [searchResults, setSearchResults] = useState<MoviesListItem[] | null>(null)
     const [showResults, setShowResults] = useState(false)
     const [isSearching, setIsSearching] = useState(false)
 
-    const { handleSubmit, control, reset } = useForm()
     const searchDelay = useRef(setTimeout(() => {}, 0))
     const searchInputElement: MutableRefObject<HTMLInputElement | null> = useRef(null)
 
     const navigate = useNavigate()
 
+    const { handleSubmit, control, reset } = useForm()
+
     const searchPattern = /^[a-zA-Zа-яА-Я0-9_: ,+/().]+$/g
 
     useEffect(() => {
-        if (isHide) {
+        if (isHeaderHidden) {
             setShowResults(false)
             searchInputElement.current?.blur()
         }
-    }, [isHide])
+    }, [isHeaderHidden])
 
     const onFormSubmit = ({ searchText }: FieldValues) => {
         navigate({

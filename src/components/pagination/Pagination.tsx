@@ -1,9 +1,10 @@
 import { MouseEventHandler } from 'react'
 import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
 import SvgId from 'utils/svg/svgId.enum'
+import PageNumber from './pageNumber/PageNumber'
 import s from './Pagination.module.scss'
 
-interface IPaginationProps {
+interface IProps {
     onPageChange: any
     pages: {
         count: number
@@ -12,13 +13,9 @@ interface IPaginationProps {
     currentPage: number
 }
 
-interface IPageNumberProps {
-    onHandlePageClick: MouseEventHandler<HTMLSpanElement>
-    pageNumber: number
-    currentPage: number
-}
+// TODO: Не отображать начальный и конечный номер страницы, в случае, если общее количество страниц не превышает 3-х
 
-const Pagination: React.FC<IPaginationProps> = ({ onPageChange, pages, currentPage }) => {
+const Pagination: React.FC<IProps> = ({ onPageChange, pages, currentPage }) => {
     const pageNumbers = []
     for (
         let currentPageNumber = currentPage === 1 || currentPage === 2 ? 1 : currentPage - 2;
@@ -43,28 +40,15 @@ const Pagination: React.FC<IPaginationProps> = ({ onPageChange, pages, currentPa
         onPageChange(pages.count)
     }
     const onHandlePageClick: MouseEventHandler<HTMLSpanElement> = (e) => {
-        const page = +e.currentTarget.innerText
+        const page = Number.parseInt(e.currentTarget.innerText)
         onPageChange(page)
     }
 
-    const PageNumber: React.FC<IPageNumberProps> = ({
-        currentPage,
-        onHandlePageClick,
-        pageNumber,
-    }) => {
-        return (
-            <span
-                onClick={onHandlePageClick}
-                key={pageNumber}
-                className={`${s.page_number} ${currentPage === pageNumber ? s.active : ''}`}
-            >
-                {pageNumber}
-            </span>
-        )
-    }
-
     return (
-        <div className={s.container}>
+        <div
+            className={s.container}
+            style={pages.count <= 1 ? { display: 'none' } : { display: 'flex' }}
+        >
             <button disabled={currentPage === 1} className={s.start} onClick={onHandleStartClick}>
                 <GlobalSvgSelector id={SvgId.PAGINATION_ALL_PAGE_ARROW} />
             </button>

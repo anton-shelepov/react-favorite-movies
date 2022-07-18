@@ -6,23 +6,23 @@ import Logo from '../logo/Logo'
 import s from './Header.module.scss'
 
 const Header: React.FC = () => {
-    const [isHide, setIsHide] = useState(false)
+    const [isHeaderHidden, setIsHeaderHidden] = useState(false)
     const prevScrollYPos = useRef(scrollY)
     const headerElement: LegacyRef<HTMLElement> | undefined = useRef(null)
-    const headerHeight = headerElement.current?.offsetHeight
 
     const onScroll: EventListenerOrEventListenerObject = () => {
+        const headerHeight = headerElement.current?.offsetHeight
         if (prevScrollYPos.current < scrollY && headerHeight && headerHeight < scrollY) {
-            setIsHide(true)
+            setIsHeaderHidden(true)
         } else if (prevScrollYPos.current > scrollY) {
-            setIsHide(false)
+            setIsHeaderHidden(false)
         }
         prevScrollYPos.current = scrollY
     }
 
     window.addEventListener('scroll', onScroll)
 
-    const headerContainerClasses = classNames(s.container, isHide && s.hide)
+    const headerContainerClasses = classNames(s.container, isHeaderHidden && s.hide)
 
     return (
         <header className={headerContainerClasses} ref={headerElement}>
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                     </Link>
                 </div>
                 <div className={s.block_middle}>
-                    <SearchForm isHide={isHide} />
+                    <SearchForm isHeaderHidden={isHeaderHidden} />
                 </div>
                 <div className={s.block_right}></div>
             </div>

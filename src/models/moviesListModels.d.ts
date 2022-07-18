@@ -1,3 +1,5 @@
+import { Rating } from './movieModels'
+
 export type MoviesListItem = {
     id: number
     posterURL: string
@@ -17,9 +19,4 @@ export type MovieGroupsData = {
         limit: number
         currentPage: number
     }
-}
-
-export type Rating = {
-    kp: number
-    imdb: number
 }

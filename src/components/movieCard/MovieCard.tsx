@@ -2,6 +2,7 @@ import preloadFone from 'assets/images/preload-fone.png'
 import Loader from 'components/loader/Loader'
 import { MoviesListItem } from 'models/moviesListModels'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import imdbIcon from '../../assets/icons/imdb-icon.png'
 import kinopoiskIcon from '../../assets/icons/kinopoisk-icon.png'
 import s from './MovieCard.module.scss'
@@ -30,20 +31,24 @@ const MovieCard: React.FC<IProps> = ({ movieData }) => {
                 )}
                 {description && <div className={s.description}>{description}</div>}
             </div>
-            <div className={s.block_bottom}>
+            <Link to={`/movie/${movieData.id}`} className={s.block_bottom}>
                 <h1 className={s.title}>{title}</h1>
                 <span className={s.additional}>{year}</span>
                 <div className={s.ratings}>
                     <div className={s.rating}>
                         <img src={kinopoiskIcon} alt='kinopoisk_rating' />
-                        <span className={s.rating_value}>{rating.kp}</span>
+                        <span className={s.rating_value}>
+                            {!rating.kp ? 'нет оценок' : rating.kp}
+                        </span>
                     </div>
                     <div className={s.rating}>
-                        <span className={s.rating_value}>{rating.imdb}</span>
+                        <span className={s.rating_value}>
+                            {!rating.imdb ? 'нет оценок' : rating.imdb}
+                        </span>
                         <img src={imdbIcon} alt='imdb_rating' />
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

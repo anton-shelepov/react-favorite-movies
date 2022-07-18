@@ -1,5 +1,5 @@
 const setPageTitle = (title: string) => {
-    document.title += ` - ${title}`
+    document.title = `FMovies - ${title}`
 }
 
 export default setPageTitle
