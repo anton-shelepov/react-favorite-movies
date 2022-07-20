@@ -1,3 +1,4 @@
+import MoviesListResponseData from 'api/movie/types/moviesListResponseData'
 import privateClient from 'api/privateClient'
 import { AxiosResponse } from 'axios'
 import classNames from 'classnames'
@@ -14,6 +15,7 @@ import {
 import { Controller, FieldValues, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { createSearchParams } from 'react-router-dom'
+import MovieGroup from 'utils/enums/movieGroup.enum'
 import GlobalSvgSelector from 'utils/svg/GlobalSvgSelector'
 import SvgId from 'utils/svg/svgId.enum'
 import ResultCard from './resultCard/ResultCard'
@@ -74,17 +76,20 @@ const SearchForm: React.FC<IProps> = ({ isHeaderHidden }) => {
 
         searchDelay.current = setTimeout(async () => {
             setIsSearching(true)
-            const response: AxiosResponse = await privateClient.get('movie', {
-                params: {
-                    field: 'name',
-                    search: searchValue,
-                    isStrict: false,
-                    sortField: 'votes.kp',
-                    sortType: -1,
+            const response: AxiosResponse<MoviesListResponseData> = await privateClient.get(
+                'movie',
+                {
+                    params: {
+                        field: 'name',
+                        search: searchValue,
+                        isStrict: false,
+                        sortField: 'votes.kp',
+                        sortType: -1,
+                    },
                 },
-            })
+            )
             setSearchResults(
-                response.data.docs.map((movie: any) => ({
+                response.data.docs.map((movie) => ({
                     id: movie.id,
                     posterURL: movie.poster.previewUrl,
                     title: movie.name,
@@ -95,6 +100,7 @@ const SearchForm: React.FC<IProps> = ({ isHeaderHidden }) => {
                     },
                     type: movie.type,
                     year: movie.year,
+                    group: MovieGroup.SEARCH,
                 })),
             )
             setIsSearching(false)

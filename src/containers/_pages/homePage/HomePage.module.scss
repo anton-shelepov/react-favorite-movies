@@ -1,6 +1,8 @@
 @import "/src/utils/scss/functions.scss";
+@import "/src/utils/scss/mixins.scss";
 
 .container {
+    @include page_container;
     .section {
         .section_title {
             margin: rem(25) 0 rem(15) 0;

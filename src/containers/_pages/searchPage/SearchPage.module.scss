@@ -1,0 +1,5 @@
+@import "/src/utils/scss/mixins.scss";
+
+.container {
+    @include page_container;
+}

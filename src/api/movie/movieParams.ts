@@ -1,3 +1,5 @@
+// TODO: Возвращать параметры в виде массива ([[key, value], [key, value], ...])
+
 export const getNewestMoviesParams = (page: number) => {
     return (
         `?page=${page}` +

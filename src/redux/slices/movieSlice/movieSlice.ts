@@ -3,7 +3,7 @@ import { Movie } from 'models/movieModels'
 import { IMovieState } from './types'
 
 const initialState: IMovieState = {
-    movie: {},
+    movie: {} as Movie,
     isLoading: false,
     error: null,
 }
@@ -15,6 +15,7 @@ const movieSlice = createSlice({
         fetchMovieRequest(state, action: PayloadAction<{ movieId: number }>) {
             state.isLoading = true
             state.error = null
+            state.movie = {} as Movie
         },
         fetchMovieSuccess(state, action: PayloadAction<Movie>) {
             state.isLoading = false

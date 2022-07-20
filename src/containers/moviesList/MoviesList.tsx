@@ -34,19 +34,18 @@ const MoviesList: React.FC<IProps> = ({
     const [searchParams, setSearchParams] = useSearchParams()
 
     const onPageChange = (page: number) => {
-        scrollToTopOfSection()
-
         if (withSearchParamPagination) {
             setSearchParams({ ...Object.fromEntries(searchParams), page: page.toString() })
+            scrollTo(0, 0)
             return
         }
-
         dispatch(
             fetchMoviesRequest({
                 group: fetchMoviesActionPayload.group,
                 searchParams: fetchMoviesActionPayload.searchParams(page),
             }),
         )
+        scrollToTopOfSection()
     }
 
     const scrollToTopOfSection = () => {

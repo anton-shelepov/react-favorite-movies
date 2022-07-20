@@ -2,14 +2,28 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import movieAPI from 'api/movie/movieAPI'
 import ResponseMovieData from 'api/movie/types/movieResponseData'
 import { AxiosResponse } from 'axios'
-import { call, takeEvery } from 'redux-saga/effects'
-import { fetchMovieRequest } from 'redux/slices/movieSlice/movieSlice'
+import { call, put, takeEvery } from 'redux-saga/effects'
+import { fetchMovieRequest, fetchMovieSuccess } from 'redux/slices/movieSlice/movieSlice'
 import { MovieRequestPayload } from 'redux/slices/movieSlice/types'
 
 function* fetchMovieSaga({ payload: { movieId } }: PayloadAction<MovieRequestPayload>) {
     try {
-        const response: AxiosResponse = yield call(movieAPI.getMovie, movieId)
-        const data: ResponseMovieData = response.data
+        const response: AxiosResponse<ResponseMovieData> = yield call(movieAPI.getMovie, movieId)
+        const data = response.data
+        yield put(
+            fetchMovieSuccess({
+                budget: data.budget,
+                description: data.description,
+                id: data.id,
+                name: data.name,
+                posterURL: data.poster.url,
+                rating: data.rating,
+                trailers: data.videos.trailers,
+                type: data.type,
+                votes: data.votes,
+                year: data.year,
+            }),
+        )
     } catch (error) {
         console.log(error)
     }

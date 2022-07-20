@@ -1,7 +1,7 @@
 import { Movie } from 'models/movieModels'
 
 export interface IMovieState {
-    movie: Movie | {}
+    movie: Movie
     isLoading: boolean
     error: Error | null
 }
