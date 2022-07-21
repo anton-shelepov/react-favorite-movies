@@ -1,5 +1,4 @@
-import imdbIcon from 'assets/icons/imdb-icon.png'
-import kinopoiskIcon from 'assets/icons/kinopoisk-icon.png'
+import Ratings from 'components/ratings/Ratings'
 import { MoviesListItem } from 'models/moviesListModels'
 import { Link } from 'react-router-dom'
 import languageMap from 'utils/constants/languageMap'
@@ -18,16 +17,7 @@ const ResultCard: React.FC<IProps> = ({ movie }) => {
             <div className={s.block_right}>
                 <div className={s.block_top}>
                     <h1 className={s.title}>{movie.title}</h1>
-                    <div className={s.rating}>
-                        <span className={s.rating_item}>
-                            {movie.rating.kp}
-                            <img src={kinopoiskIcon} alt='kp_icon' />
-                        </span>
-                        <span className={s.rating_item}>
-                            {movie.rating.imdb}
-                            <img src={imdbIcon} alt='imdb_icon' />
-                        </span>
-                    </div>
+                    <Ratings rating={movie.rating} />
                 </div>
                 <span className={s.additional}>{`${languageMap[movie.type]} (${movie.year})`}</span>
                 <p className={s.description}>{movie.description}</p>

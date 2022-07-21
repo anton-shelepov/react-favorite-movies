@@ -5,6 +5,7 @@ import { AxiosResponse } from 'axios'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import { fetchMovieRequest, fetchMovieSuccess } from 'redux/slices/movieSlice/movieSlice'
 import { MovieRequestPayload } from 'redux/slices/movieSlice/types'
+import setPageTitle from 'utils/scripts/setPageTitle'
 
 function* fetchMovieSaga({ payload: { movieId } }: PayloadAction<MovieRequestPayload>) {
     try {
@@ -24,6 +25,7 @@ function* fetchMovieSaga({ payload: { movieId } }: PayloadAction<MovieRequestPay
                 year: data.year,
             }),
         )
+        setPageTitle(data.name)
     } catch (error) {
         console.log(error)
     }

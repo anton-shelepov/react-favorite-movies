@@ -11,6 +11,31 @@
         max-width: rem($base-content-wrapper-width);
         width: 100%;
         margin: 0 auto;
-        padding-top: 100px;
+        padding: 0 rem($base-safe-padding-desktop) 0 rem($base-safe-padding-desktop);
+        padding-top: rem(calc($header-height-desktop + 15));
+
+        .block_left {
+            margin-right: rem(25);
+            flex-shrink: 0;
+            max-width: rem(400);
+            width: 100%;
+            .poster_large {
+                width: 100%;
+            }
+        }
+        .block_right {
+            .title {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: rem(15);
+            }
+            .description {
+                line-height: 1.5;
+                color: $color-light-grey;
+                margin-bottom: rem(30);
+            }
+        }
     }
 }

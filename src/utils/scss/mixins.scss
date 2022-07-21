@@ -17,5 +17,5 @@
     max-width: rem($base-content-wrapper-width);
     margin: rem(120) auto rem(50) auto;
     width: 100%;
-    padding: 0 rem(15) 0 rem(15);
+    padding: 0 rem($base-safe-padding-desktop) 0 rem($base-safe-padding-desktop);
 }

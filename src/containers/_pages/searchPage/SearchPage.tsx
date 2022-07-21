@@ -33,7 +33,7 @@ const SearchPage: React.FC<IProps> = (props) => {
 
     // Only first render
     useEffect(() => {
-        setPageTitle('Поиск')
+        setPageTitle('Результаты поиска')
     }, [])
 
     // First render and if requestMoviesParams was changed

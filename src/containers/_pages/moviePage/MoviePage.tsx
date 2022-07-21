@@ -1,3 +1,4 @@
+import Loader from 'components/loader/Loader'
 import MovieDetails from 'components/movieDetails/MovieDetails'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -12,13 +13,16 @@ const MoviePage: React.FC<IProps> = (props) => {
     const dispatch = useAppDispatch()
     const { movieId } = useParams()
 
-    const movieData = useAppSelector((state) => state.movie.movie)
+    const movie = useAppSelector((state) => state.movie)
+    const movieData = movie.movie
 
     useEffect(() => {
         if (movieId) {
             dispatch(fetchMovieRequest({ movieId: Number.parseInt(movieId) }))
         }
-    }, [])
+    }, [movieId])
+
+    if (Object.keys(movieData).length === 0) return <Loader color='black' />
 
     return (
         <div className={s.container}>
@@ -26,5 +30,8 @@ const MoviePage: React.FC<IProps> = (props) => {
         </div>
     )
 }
+
+// TODO: Блок фактов
+// TODO: Блок актеров
 
 export default MoviePage

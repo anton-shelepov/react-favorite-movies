@@ -34,6 +34,11 @@ export type Fees = {
     usa: Currency
 }
 
+export type AboutMovieDataItem = {
+    name: string
+    value: string
+}
+
 // Common models (locals usage)
 
 export type Currency = {
